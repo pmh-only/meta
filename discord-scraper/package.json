@@ -1,0 +1,17 @@
+{
+  "name": "discord-scraper",
+  "version": "1.0.0",
+  "description": "Scrape all Discord channel messages into DuckDB for OLAP analytics",
+  "type": "module",
+  "main": "scrape.js",
+  "scripts": {
+    "start": "node scrape.js",
+    "scrape": "node scrape.js"
+  },
+  "dependencies": {
+    "@discordjs/rest": "^2.4.0",
+    "@duckdb/node-api": "^1.5.2-r.1",
+    "discord-api-types": "^0.37.119",
+    "dotenv": "^16.4.7"
+  }
+}
