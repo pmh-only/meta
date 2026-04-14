@@ -1,5 +1,5 @@
 # ── Build stage ───────────────────────────────────────────────
-FROM node:22-alpine AS builder
+FROM node:22-slim AS builder
 
 WORKDIR /app
 
@@ -10,9 +10,9 @@ COPY . .
 RUN npm run build
 
 # ── Runtime stage ─────────────────────────────────────────────
-FROM node:22-alpine
-
-RUN addgroup -S app && adduser -S app -G app
+# node:22-slim is Debian-based (glibc), which DuckDB's prebuilt
+# native binary requires. Alpine (musl) is not compatible.
+FROM node:22-slim
 
 WORKDIR /app
 
@@ -24,7 +24,7 @@ COPY package*.json ./
 # for the target architecture at install time.
 RUN npm ci --omit=dev
 
-USER app
+USER node
 
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
