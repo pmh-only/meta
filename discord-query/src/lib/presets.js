@@ -77,9 +77,9 @@ ORDER BY count DESC`
   },
   {
     name: 'Active Hours',
-    description: 'Messages grouped by hour of day (UTC)',
+    description: 'Messages grouped by hour of day (KST)',
     sql: `SELECT
-  EXTRACT(hour FROM timestamp) AS hour_utc,
+  EXTRACT(hour FROM timestamp) AS hour,
   COUNT(*) AS messages
 FROM messages
 GROUP BY 1

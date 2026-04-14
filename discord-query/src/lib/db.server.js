@@ -14,6 +14,8 @@ async function getConnection() {
   if (!_cache.conn) {
     _cache.instance = await DuckDBInstance.create(DB_PATH, { access_mode: 'READ_ONLY' });
     _cache.conn = await _cache.instance.connect();
+    await _cache.conn.run('LOAD icu');
+    await _cache.conn.run("SET TimeZone = 'Asia/Seoul'");
     console.log(`[DuckDB] Connected to ${DB_PATH}`);
   }
   return _cache.conn;

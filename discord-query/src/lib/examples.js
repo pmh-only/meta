@@ -26,11 +26,11 @@ ORDER BY 1`,
   },
   {
     name: 'Active Hours',
-    description: 'Chat activity by hour of day (UTC)',
+    description: 'Chat activity by hour of day (KST)',
     icon: '🕐',
-    chart: { type: 'bar', xCol: 'hour_utc', yCols: ['messages'] },
+    chart: { type: 'bar', xCol: 'hour', yCols: ['messages'] },
     sql: `SELECT
-  EXTRACT(hour FROM timestamp)::INTEGER AS hour_utc,
+  EXTRACT(hour FROM timestamp)::INTEGER AS hour,
   COUNT(*) AS messages
 FROM messages
 GROUP BY 1
