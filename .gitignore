@@ -1,3 +1,4 @@
 .env
 *.duckdb*
 node_modules/
+.svelte-kit/
